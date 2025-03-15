@@ -1,7 +1,7 @@
 ---
 title: clitest2
 tags:
-  - ''
+  - 'QiitaCLI'
 private: false
 updated_at: ''
 id: null
@@ -10,3 +10,4 @@ slide: false
 ignorePublish: false
 ---
 # clitest2
+ssss
