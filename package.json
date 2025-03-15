@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@qiita/qiita-cli": "^1.6.1"
+  },
+    "scripts": {
+      "pre": "qiita preview",
+      "pull": "qiita pull",
+      "push": "qiita publish"
+    }
+}
