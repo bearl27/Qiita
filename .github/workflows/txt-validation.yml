@@ -18,6 +18,9 @@ jobs:
       - name: Install dependencies
         run: npm install js-yaml
 
+      - name: Fetch remote branches
+        run: git fetch origin
+
       - name: Check Frontmatter
         run: |
           node -e '
@@ -29,23 +32,23 @@ jobs:
             try {
               const content = fs.readFileSync(filePath, "utf8");
               const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
-          
+
               if (!frontmatterMatch) return;
-          
+
               const frontmatter = yaml.load(frontmatterMatch[1]);
-          
+
               const errors = [];
-          
+
               // タグがない、または空の配列の場合
               if (!frontmatter.tags || frontmatter.tags.length === 0) {
                 errors.push("タグが設定されていません");
               }
-          
+
               // privateがtrueなのにorganization_url_nameが設定されている場合
               if (frontmatter.private === true && frontmatter.organization_url_name !== null) {
                 errors.push("非公開記事にorganization_url_nameが設定されています");
               }
-          
+
               if (errors.length > 0) {
                 console.error(`${filePath}で以下のエラーが見つかりました：`);
                 errors.forEach(error => console.error(`- ${error}`));
